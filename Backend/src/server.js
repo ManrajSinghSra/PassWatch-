@@ -16,6 +16,7 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
+
     if (!origin) {
       return callback(null, true);
     }
@@ -25,6 +26,7 @@ app.use(cors({
     }
 
     return callback(new Error('Not allowed by CORS'));
+
   },
 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -32,12 +34,13 @@ app.use(cors({
   allowedHeaders: [
     'Content-Type',
     'Authorization'
-  ],
+  ]
 
-  credentials: true
 }));
 
-app.options('*', cors());
+app.options('*', cors({
+  origin: allowedOrigins
+}));
 
 app.use(express.json());
 
@@ -45,6 +48,7 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/export', exportRoutes);
 
 app.get('/', (req, res) => {
+
   res.json({
     status: 'PassWatch API running',
     endpoints: {
@@ -56,27 +60,71 @@ app.get('/', (req, res) => {
       exportPdf: '/api/export/pdf'
     }
   });
+
 });
 
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
+
   try {
+
+    console.log('========== ENV CHECK ==========');
+
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+
+    console.log(
+      'MONGODB_URI exists:',
+      !!process.env.MONGODB_URI
+    );
+
+    console.log(
+      'PORT:',
+      process.env.PORT
+    );
+
+    console.log('===============================');
+
     await connectDB();
 
     console.log('✅ MongoDB Connected');
 
     app.listen(PORT, () => {
+
       console.log(`✅ Server running on port ${PORT}`);
 
       const startCronJobs = require('./jobs/cron');
+
       startCronJobs();
+
     });
 
   } catch (err) {
-    console.error('❌ Startup Error:', err);
+
+    console.error('❌ FULL STARTUP ERROR ❌');
+
+    console.error(err);
+
     process.exit(1);
+
   }
+
 }
+
+process.on('unhandledRejection', (err) => {
+
+  console.error('❌ Unhandled Rejection ❌');
+
+  console.error(err);
+
+});
+
+process.on('uncaughtException', (err) => {
+
+  console.error('❌ Uncaught Exception ❌');
+
+  console.error(err);
+
+});
 
 startServer();
