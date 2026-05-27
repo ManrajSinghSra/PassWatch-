@@ -13,7 +13,17 @@ app.use(express.json());
 app.use('/api/posts', postsRoutes);
 app.use('/api/export', exportRoutes);
 
-app.get('/', (req, res) => res.json({ status: 'PassWatch API running' }));
+app.get('/', (req, res) => res.json({ 
+  status: 'PassWatch API running',
+  endpoints: {
+    posts: '/api/posts',
+    stats: '/api/posts/stats',
+    translate: 'POST /api/posts/translate',
+    scrape: 'POST /api/posts/scrape',
+    exportCsv: '/api/export/csv',
+    exportPdf: '/api/export/pdf'
+  }
+}));
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,13 +1,15 @@
 const express = require('express');
 const Post = require('../models/Post');
 const { translateText } = require('../nlp/translator');
+const runAllScrapers = require('../scrapers');
 const router = express.Router();
 
+// GET /api/posts - List posts with filters
 router.get('/', async (req, res) => {
   try {
     const {
-      platform, category, sentiment, search,
-      sort = 'publishedAt', order = 'desc',
+      platform, category, sentiment, search, author,
+      minLikes, sort = 'publishedAt', order = 'desc',
       page = 1, limit = 20
     } = req.query;
     
@@ -15,6 +17,8 @@ router.get('/', async (req, res) => {
     if (platform) filter.platform = platform;
     if (category) filter.category = category;
     if (sentiment) filter.sentiment = sentiment;
+    if (author) filter.author = { $regex: author, $options: 'i' };
+    if (minLikes) filter['engagement.likes'] = { $gte: parseInt(minLikes) };
     
     if (search) {
       filter.$or = [
@@ -41,6 +45,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/posts/stats - Aggregate statistics
 router.get('/stats', async (req, res) => {
   try {
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
@@ -63,6 +68,7 @@ router.get('/stats', async (req, res) => {
   }
 });
 
+// POST /api/posts/translate - Translate a post
 router.post('/translate', async (req, res) => {
   try {
     const { postId, targetLang } = req.body;
@@ -86,6 +92,13 @@ router.post('/translate', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+// POST /api/posts/scrape - Manually trigger scraping
+router.post('/scrape', async (req, res) => {
+  res.json({ status: 'Scraping triggered', message: 'Check back in 30-60 seconds for new posts' });
+  // Run in background
+  runAllScrapers().catch(console.error);
 });
 
 module.exports = router;

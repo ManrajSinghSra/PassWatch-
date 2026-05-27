@@ -21,6 +21,7 @@
     "mongoose": "^9.6.2",
     "node-cron": "^4.2.1",
     "openai": "^6.39.0",
+    "pdfkit": "^0.18.0",
     "rss-parser": "^3.13.0"
   }
 }
