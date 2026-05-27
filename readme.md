@@ -8,8 +8,8 @@ A real-time social media scraper that aggregates, categorizes, and analyzes pass
 
 ## 🌐 Live Demo
 
-- **Dashboard:** [https://passwatch.vercel.app](https://your-frontend-url.vercel.app) 
-- **API:** [https://passwatch-api.onrender.com](https://your-backend-url.onrender.com)
+- **Dashboard:**  https://passwatch-seven.vercel.app/
+- **API:**  https://passwatch-api.onrender.com
 
 ---
 
@@ -30,3 +30,16 @@ A real-time social media scraper that aggregates, categorizes, and analyzes pass
 | **Manual refresh** | Trigger on-demand scrape from the dashboard |
 
 ---     
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React.js, Vite, Tailwind CSS |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (Mongoose) |
+| **AI/NLP** | OpenAI GPT-4o-mini (categorisation, summary, sentiment, embeddings) |
+| **Scraping** | Reddit API, YouTube Data API, HackerNews API, Google News RSS |
+| **Scheduling** | node-cron (every 30 mins) |
+| **Export** | PDFKit, json2csv |
+| **Deployment** | Vercel (Frontend), Render (Backend) |
