@@ -1,0 +1,124 @@
+{
+  "info": {
+    "_postman_id": "836bfc4d-cf2d-43d6-9751-dc3629a0ce53",
+    "name": "PassWatch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40717086"
+  },
+  "item": [
+    {
+      "name": "Get Posts",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://passwatch-api.onrender.com/api/posts/stats",
+          "protocol": "https",
+          "host": [
+            "passwatch-api",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "posts",
+            "stats"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Translate Post",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://passwatch-api.onrender.com/api/posts/translate",
+          "protocol": "https",
+          "host": [
+            "passwatch-api",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "posts",
+            "translate"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Export CSV",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://passwatch-api.onrender.com/api/export/csv",
+          "protocol": "https",
+          "host": [
+            "passwatch-api",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "export",
+            "csv"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Manual Scrape",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://passwatch-api.onrender.com/api/posts/scrape",
+          "protocol": "https",
+          "host": [
+            "passwatch-api",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "posts",
+            "scrape"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
