@@ -9,38 +9,7 @@ const exportRoutes = require('./routes/export');
 
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://passwatch-seven.vercel.app'
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-
-    if (!origin) {
-      return callback(null, true);
-    }
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    return callback(new Error('Not allowed by CORS'));
-
-  },
-
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization'
-  ]
-
-}));
-
-app.options('*', cors({
-  origin: allowedOrigins
-}));
+app.use(cors());
 
 app.use(express.json());
 
@@ -48,7 +17,6 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/export', exportRoutes);
 
 app.get('/', (req, res) => {
-
   res.json({
     status: 'PassWatch API running',
     endpoints: {
@@ -60,71 +28,42 @@ app.get('/', (req, res) => {
       exportPdf: '/api/export/pdf'
     }
   });
-
 });
 
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
-
   try {
-
     console.log('========== ENV CHECK ==========');
-
     console.log('NODE_ENV:', process.env.NODE_ENV);
-
-    console.log(
-      'MONGODB_URI exists:',
-      !!process.env.MONGODB_URI
-    );
-
-    console.log(
-      'PORT:',
-      process.env.PORT
-    );
-
+    console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+    console.log('PORT:', process.env.PORT);
     console.log('===============================');
 
     await connectDB();
-
     console.log('✅ MongoDB Connected');
 
     app.listen(PORT, () => {
-
       console.log(`✅ Server running on port ${PORT}`);
-
       const startCronJobs = require('./jobs/cron');
-
       startCronJobs();
-
     });
 
   } catch (err) {
-
     console.error('❌ FULL STARTUP ERROR ❌');
-
     console.error(err);
-
     process.exit(1);
-
   }
-
 }
 
 process.on('unhandledRejection', (err) => {
-
   console.error('❌ Unhandled Rejection ❌');
-
   console.error(err);
-
 });
 
 process.on('uncaughtException', (err) => {
-
   console.error('❌ Uncaught Exception ❌');
-
   console.error(err);
-
 });
 
 startServer();
