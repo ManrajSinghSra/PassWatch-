@@ -36,7 +36,7 @@ async function scrapeHackerNews() {
     }
   }
   
-  console.log(`✅ HackerNews: ${posts.length} posts`);
+  console.log(` HackerNews: ${posts.length} posts`);
   return posts;
 }
 

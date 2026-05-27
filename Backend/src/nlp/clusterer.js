@@ -46,7 +46,7 @@ async function clusterPosts() {
     );
   }
   
-  console.log(`🔗 Created ${count} clusters`);
+  console.log(` Created ${count} clusters`);
 }
 
 module.exports = { clusterPosts, cosineSimilarity };

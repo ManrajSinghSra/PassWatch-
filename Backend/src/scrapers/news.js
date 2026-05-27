@@ -56,7 +56,7 @@ async function scrapeNews() {
     }
   }
   
-  console.log(`✅ News: ${posts.length} posts`);
+  console.log(` News: ${posts.length} posts`);
   return posts;
 }
 

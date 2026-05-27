@@ -38,7 +38,7 @@ async function scrapeYouTube() {
     console.error('YouTube error:', err.message);
   }
   
-  console.log(`✅ YouTube: ${posts.length} posts`);
+  console.log(` YouTube: ${posts.length} posts`);
   return posts;
 }
 

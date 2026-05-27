@@ -18,7 +18,7 @@ async function runAllScrapers() {
   ]);
   
   const allPosts = [...redditPosts, ...hnPosts, ...newsPosts, ...ytPosts];
-  console.log(`📥 Total scraped: ${allPosts.length} posts`);
+  console.log(` Total scraped: ${allPosts.length} posts`);
   
   if (allPosts.length === 0) return;
   
@@ -29,7 +29,7 @@ async function runAllScrapers() {
   const existingSet = new Set(existing.map(p => p.platformId));
   const newPosts = allPosts.filter(p => !existingSet.has(p.platformId));
   
-  console.log(`✨ ${newPosts.length} new posts to process`);
+  console.log(` ${newPosts.length} new posts to process`);
   
   if (newPosts.length === 0) return;
   
@@ -49,7 +49,7 @@ async function runAllScrapers() {
   await clusterPosts();
   
   const duration = ((Date.now() - startTime) / 1000).toFixed(1);
-  console.log(`✅ Saved ${saved} posts in ${duration}s`);
+  console.log(` Saved ${saved} posts in ${duration}s`);
 }
 
 module.exports = runAllScrapers;

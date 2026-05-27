@@ -64,7 +64,7 @@ async function scrapeReddit() {
     }
   }
   
-  console.log(`✅ Reddit: ${posts.length} posts`);
+  console.log(` Reddit: ${posts.length} posts`);
   return posts;
 }
 
