@@ -10,7 +10,6 @@ const exportRoutes = require('./routes/export');
 const app = express();
 
 app.use(cors());
-
 app.use(express.json());
 
 app.use('/api/posts', postsRoutes);
@@ -34,36 +33,18 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
-    console.log('========== ENV CHECK ==========');
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
-    console.log('PORT:', process.env.PORT);
-    console.log('===============================');
-
     await connectDB();
-    console.log('✅ MongoDB Connected');
-
     app.listen(PORT, () => {
-      console.log(`✅ Server running on port ${PORT}`);
       const startCronJobs = require('./jobs/cron');
       startCronJobs();
     });
-
   } catch (err) {
-    console.error('❌ FULL STARTUP ERROR ❌');
     console.error(err);
     process.exit(1);
   }
 }
 
-process.on('unhandledRejection', (err) => {
-  console.error('❌ Unhandled Rejection ❌');
-  console.error(err);
-});
-
-process.on('uncaughtException', (err) => {
-  console.error('❌ Uncaught Exception ❌');
-  console.error(err);
-});
+process.on('unhandledRejection', (err) => console.error(err));
+process.on('uncaughtException', (err) => console.error(err));
 
 startServer();
