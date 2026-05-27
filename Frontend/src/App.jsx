@@ -17,13 +17,14 @@ const CATEGORIES = [
   'Travel Issues', 'Government Announcements', 'Scams/Fraud', 'News', 'Personal Experiences'
 ];
 
-const PLATFORMS = ['reddit', 'hackernews', 'news'];
+const PLATFORMS = ['reddit', 'hackernews', 'news','youtube'];
 const SENTIMENTS = ['positive', 'neutral', 'negative'];
 
 const PLATFORM_COLORS = {
   reddit: 'bg-orange-100 text-orange-700 border-orange-200',
   hackernews: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-  news: 'bg-blue-100 text-blue-700 border-blue-200'
+  news: 'bg-blue-100 text-blue-700 border-blue-200',
+   youtube: 'bg-red-100 text-red-700 border-red-200' 
 };
 
 const SENTIMENT_COLORS = {
@@ -82,8 +83,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">🛂 Zebvo Newswire</h1>
-              <p className="text-sm text-gray-600">Passport-related social media intelligence • Last 24 hours</p>
+             <h1 className="text-2xl font-bold text-gray-900">🛂 PassWatch</h1>
+             <p className="text-sm text-gray-600">Passport-related social media intelligence • Last 24 hours</p>
             </div>
             <button onClick={handleExport}
               className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">

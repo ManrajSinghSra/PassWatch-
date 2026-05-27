@@ -13,7 +13,7 @@ app.use(express.json());
 app.use('/api/posts', postsRoutes);
 app.use('/api/export', exportRoutes);
 
-app.get('/', (req, res) => res.json({ status: 'Zebvo Scraper API running' }));
+app.get('/', (req, res) => res.json({ status: 'PassWatch API running' }));
 
 const PORT = process.env.PORT || 5000;
 
