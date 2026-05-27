@@ -2,11 +2,23 @@ const RSSParser = require('rss-parser');
 const parser = new RSSParser({ timeout: 10000 });
 
 const FEEDS = [
+  // English news
   'https://news.google.com/rss/search?q=passport+india&hl=en-IN&gl=IN',
   'https://news.google.com/rss/search?q=passport+renewal&hl=en',
   'https://news.google.com/rss/search?q=visa+stamping&hl=en',
   'https://news.google.com/rss/search?q=tatkal+passport&hl=en',
-  'https://news.google.com/rss/search?q=passport+appointment&hl=en'
+  'https://news.google.com/rss/search?q=passport+appointment&hl=en',
+  
+  // More keywords
+  'https://news.google.com/rss/search?q=passport+seva&hl=en',
+  'https://news.google.com/rss/search?q=visa+rejection&hl=en',
+  'https://news.google.com/rss/search?q=embassy+passport&hl=en',
+  'https://news.google.com/rss/search?q=passport+fraud&hl=en',
+  'https://news.google.com/rss/search?q=visa+interview&hl=en',
+  
+  // Global
+  'https://news.google.com/rss/search?q=immigration+visa&hl=en',
+  'https://news.google.com/rss/search?q=international+travel+passport&hl=en'
 ];
 
 async function scrapeNews() {

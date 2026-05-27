@@ -29,6 +29,4 @@ A real-time social media scraper that aggregates, categorizes, and analyzes pass
 | **CSV + PDF Export** | Download filtered results in both formats |
 | **Manual refresh** | Trigger on-demand scrape from the dashboard |
 
----
-
-## 🏗️ Architecture
+---     
